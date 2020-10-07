@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const { config } = require("dotenv");
 const ytdl = require('ytdl-core')
+
 config({
     path: __dirname + '/.env'
 });
@@ -22,14 +23,34 @@ client.on('message', async message => {
         const vChannel = message.member.voice.channel
         if (vChannel) {
             try {
-                message.channel.startTyping()
-                message.delete()
-                message.channel.send("Try")
-                .then(message => message.edit("Try to"))
-                .then(message => message.edit("Try to werax"))
-                .then(message => message.edit("Try to werax (U w U)"))
+                main = "Try to welax"
+                emoji = ["(U", "w", "U)"]
+                message.channel.send(main)
+                .then((message) => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => resolve(message), 1000)
+                    })
+                })
+                .then(message => message.edit(main + " " + emoji[0]))
+                .then((message) => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => resolve(message), 200)
+                    })
+                })
+                .then(message => message.edit(main + " " + emoji[0] + " " + emoji[1]))
+                .then((message) => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => resolve(message), 200)
+                    })
+                })
+                .then(message => message.edit(main + " " + emoji[0] + " " + emoji[1] + " " + emoji[2]))
+                .then((message) => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => resolve(message), 200)
+                    })
+                })
                 .then((message) => setTimeout(() => message.delete(), 2000))
-                message.channel.stopTyping()
+                .then(message.delete())
 
                 var connection = await vChannel.join()
                 
@@ -68,7 +89,6 @@ client.on('message', async message => {
                 setTimeout(() => msg.delete(), 2000)
                 message.delete() 
             })
-
         }
     }
 })
